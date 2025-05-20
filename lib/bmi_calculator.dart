@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/app.dart';
 import 'package:flutter/material.dart';
 import 'unit_text_form_field.dart';
 
