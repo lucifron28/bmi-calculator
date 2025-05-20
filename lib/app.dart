@@ -20,12 +20,15 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("BMI Calculator"),
-        centerTitle: true,
+    return GestureDetector(
+      onTap: FocusScope.of(context).unfocus,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("BMI Calculator"),
+          centerTitle: true,
+        ),
+        body: Center(child: Calculator()),
       ),
-      body: Calculator(),
     );
   }
 }
