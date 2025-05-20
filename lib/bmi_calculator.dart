@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'unit_text_form_field.dart';
 
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
@@ -11,7 +12,8 @@ class _CalculatorState extends State<Calculator> {
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
 
-  String? selectedUnit = "kg";
+  String? selectedWeightUnit = "kg";
+  final List<String> weightUnits = ["kg", "lbs"];
 
   bool isNumeric(String s) {
     if (s.isEmpty) {
@@ -24,34 +26,22 @@ class _CalculatorState extends State<Calculator> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TextFormField(
-          controller: weightController,
-          decoration: InputDecoration(
-            labelText: "Enter Height",
-            suffixIcon: DropdownButton<String>(
-              value: selectedUnit,
-              items:
-                  ["kg", "lbs"].map((String value) {
-                    return DropdownMenuItem<String>(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-              onChanged: (String? newValue) {
-                setState(() {
-                  selectedUnit = newValue!;
-                });
-              }
-            ),
+        Padding(
+          padding: const EdgeInsets.all(25.0),
+          child: UnitTextFormField(
+            controller: heightController,
+            labelText: "Enter Weight",
+            selectedUnit: selectedWeightUnit,
+            units: weightUnits,
+            onUnitChanged: (value) {
+              setState(() {
+                selectedWeightUnit = value;
+              });
+            },
+            validator: (value) {
+              if (value == null || value.isEmpty) return "Please Enter a Number";
+            },
           ),
-          validator: (value) {
-            if (value == null || value.isEmpty) return "Please enter a number";
-            if (!isNumeric(value)) return "Invalid number Format";
-            if (double.parse(value) < 0) {
-              return "Please enter a positive number";
-            }
-            return null;
-          },
         ),
       ],
     );
