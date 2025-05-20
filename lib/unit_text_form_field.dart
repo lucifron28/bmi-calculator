@@ -5,7 +5,7 @@ class UnitTextFormField extends StatelessWidget {
   final String? labelText;
   final String? selectedUnit;
   final List<String> units;
-  final void Function(String?) onUnitChanged;
+  final void Function(String?)? onUnitChanged;
   final String? Function(String?)? validator;
   const UnitTextFormField({
     super.key,
@@ -21,8 +21,10 @@ class UnitTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         labelText: labelText,
+        border: OutlineInputBorder(),
         suffixIcon: SizedBox(
           child: DropdownButtonHideUnderline(
             child: DropdownButton(
