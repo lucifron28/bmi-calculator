@@ -22,7 +22,7 @@ The goal is to progressively improve my skills by building real apps and experim
 
    - Create, view, and delete tasks to practice list management and input handling.
 
-3. [**BMI Calculator**](https://github.com/lucifron28/bmi-calculator)
+3. [**BMI Calculator**](https://github.com/lucifron28/bmi-calculator) ✅
 
    - Input height and weight to calculate Body Mass Index with basic form validation.
 
