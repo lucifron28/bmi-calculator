@@ -27,45 +27,61 @@ class _CalculatorState extends State<Calculator> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        UnitTextFormField(
-          controller: heightController,
-          labelText: "Enter Weight",
-          selectedUnit: selectedHeightUnit,
-          units: heightUnits,
-          onUnitChanged: (value) {
-            setState(() {
-              selectedHeightUnit = value;
-            });
-          },
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Please Enter a Number";
-            }
-            if (!isNumeric(value)) {
-              return "Invalid number format";
-            }
-          },
+        Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              UnitTextFormField(
+                controller: heightController,
+                labelText: "Enter Weight",
+                selectedUnit: selectedHeightUnit,
+                units: heightUnits,
+                onUnitChanged: (value) {
+                  setState(() {
+                    selectedHeightUnit = value;
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please Enter a Number";
+                  }
+                  if (!isNumeric(value)) {
+                    return "Invalid number format";
+                  }
+                },
+              ),
+              SizedBox(height: 20),
+              UnitTextFormField(
+                controller: heightController,
+                labelText: "Enter Height",
+                selectedUnit: selectedWeightUnit,
+                units: weightUnits,
+                onUnitChanged: (value) {
+                  setState(() {
+                    selectedWeightUnit = value;
+                  });
+                },
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please Enter a Number";
+                  }
+                  if (!isNumeric(value)) {
+                    return "Invalid number format";
+                  }
+                },
+              ),
+            ],
+          ),
         ),
-        UnitTextFormField(
-          controller: heightController,
-          labelText: "Enter Height",
-          selectedUnit: selectedWeightUnit,
-          units: weightUnits,
-          onUnitChanged: (value) {
-            setState(() {
-              selectedWeightUnit = value;
-            });
-          },
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Please Enter a Number";
-            }
-            if (!isNumeric(value)) {
-              return "Invalid number format";
-            }
-          },
-        ),
+        ElevatedButton(
+          onPressed: () {
+
+          }, 
+          child: Text("Submit"),
+          ),
       ],
     );
   }
