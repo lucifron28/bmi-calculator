@@ -25,22 +25,26 @@ class _CalculatorState extends State<Calculator> {
     return double.tryParse(s) != null;
   }
 
-double calculateBMI(double height, double weight) {
-  if (selectedHeightUnit == "cm") {
-    height = height / 100;
-  } else if (selectedHeightUnit == "in") {
-    height = height * 0.0254;
-  } else if (selectedHeightUnit == "m") {
+  double calculateBMI(double height, double weight) {
+    if (selectedHeightUnit == "cm") {
+      height = height / 100;
+    } else if (selectedHeightUnit == "in") {
+      height = height * 0.0254;
+    } else if (selectedHeightUnit == "m") {}
+
+    if (selectedWeightUnit == "lbs") {
+      weight = weight * 0.453592;
+    }
+
+    return weight / (height * height);
   }
 
-  if (selectedWeightUnit == "lbs") {
-    weight = weight * 0.453592;
+  @override
+  void dispose() {
+    heightController.dispose();
+    weightController.dispose();
+    super.dispose();
   }
-
-  return weight / (height * height);
-}
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +109,8 @@ double calculateBMI(double height, double weight) {
             );
             setState(() {
               resultBMI = bmi.toString();
+              heightController.clear();
+              weightController.clear();
             });
           },
           child: Text("Submit"),
