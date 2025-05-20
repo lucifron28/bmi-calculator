@@ -13,8 +13,10 @@ class _CalculatorState extends State<Calculator> {
   TextEditingController weightController = TextEditingController();
 
   String? selectedWeightUnit = "kg";
-  final List<String> weightUnits = ["kg", "lbs"];
+  List<String> weightUnits = ["kg", "lbs"];
 
+  String? selectedHeightUnit = "cm";
+  List<String> heightUnits = ["cm", "inch"];
   bool isNumeric(String s) {
     if (s.isEmpty) {
       return false;
@@ -26,22 +28,43 @@ class _CalculatorState extends State<Calculator> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: UnitTextFormField(
-            controller: heightController,
-            labelText: "Enter Weight",
-            selectedUnit: selectedWeightUnit,
-            units: weightUnits,
-            onUnitChanged: (value) {
-              setState(() {
-                selectedWeightUnit = value;
-              });
-            },
-            validator: (value) {
-              if (value == null || value.isEmpty) return "Please Enter a Number";
-            },
-          ),
+        UnitTextFormField(
+          controller: heightController,
+          labelText: "Enter Weight",
+          selectedUnit: selectedHeightUnit,
+          units: heightUnits,
+          onUnitChanged: (value) {
+            setState(() {
+              selectedHeightUnit = value;
+            });
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please Enter a Number";
+            }
+            if (!isNumeric(value)) {
+              return "Invalid number format";
+            }
+          },
+        ),
+        UnitTextFormField(
+          controller: heightController,
+          labelText: "Enter Height",
+          selectedUnit: selectedWeightUnit,
+          units: weightUnits,
+          onUnitChanged: (value) {
+            setState(() {
+              selectedWeightUnit = value;
+            });
+          },
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return "Please Enter a Number";
+            }
+            if (!isNumeric(value)) {
+              return "Invalid number format";
+            }
+          },
         ),
       ],
     );
