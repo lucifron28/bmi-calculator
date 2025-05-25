@@ -26,7 +26,7 @@ The goal is to progressively improve my skills by building real apps and experim
 
    - Input height and weight to calculate Body Mass Index with basic form validation.
 
-4. [**Calculator**](https://github.com/lucifron28/calculator)
+4. [**Calculator**](https://github.com/lucifron28/calculator) ✅
 
    - A basic calculator that performs addition, subtraction, multiplication, and division. Great for practicing layout with GridView or Rows/Columns and implementing arithmetic logic.
 
